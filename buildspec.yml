@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      golang: latest
+  pre_build:
+    commands:
+    - echo "replace github.com/kawakattsun/codebuild-go-modules-sample-private => $(realpath --relative-to=./ ${CODEBUILD_SRC_DIR_codebuild-go-modules-sample-private})" >> go.mod
+    - export GO_LDFLAGS="-X github.com/kawakattsun/codebuild-go-modules-sample-private/private.version=${CODEBUILD_SOURCE_VERSION} -X github.com/kawakattsun/codebuild-go-modules-sample-private/private.revision=$(echo ${CODEBUILD_RESOLVED_SOURCE_VERSION} | head -c 8)"
+    - go mod download
+  build:
+    commands:
+    - go build -trimpath -ldflags '${GO_LDFLAGS}' -o codebuild-go-modules-sample .
+  post_build:
+    commands:
+    - ./codebuild-go-modules-sample
