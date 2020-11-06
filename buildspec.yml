@@ -6,7 +6,7 @@ phases:
       golang: latest
   pre_build:
     commands:
-    - echo "replace github.com/kawakattsun/codebuild-go-modules-sample-private => $(realpath --relative-to=./ ${CODEBUILD_SRC_DIR_codebuild-go-modules-sample-private})" >> go.mod
+    - echo "replace github.com/kawakattsun/codebuild-go-modules-sample-private => $(realpath --relative-to=./ ${CODEBUILD_SRC_DIR_codebuild_go_modules_sample_private})" >> go.mod
     - export GO_LDFLAGS="-X github.com/kawakattsun/codebuild-go-modules-sample-private/private.version=${CODEBUILD_SOURCE_VERSION} -X github.com/kawakattsun/codebuild-go-modules-sample-private/private.revision=$(echo ${CODEBUILD_RESOLVED_SOURCE_VERSION} | head -c 8)"
     - go mod download
   build:
