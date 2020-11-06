@@ -11,7 +11,5 @@ phases:
     - go mod download
   build:
     commands:
-    - go build -trimpath -ldflags '${GO_LDFLAGS}' -o codebuild-go-modules-sample .
-  post_build:
-    commands:
-    - ./codebuild-go-modules-sample
+    - go build -trimpath -ldflags "${GO_LDFLAGS}" -o ./bin/codebuild-go-modules-sample .
+    - ./bin/codebuild-go-modules-sample

@@ -7,4 +7,4 @@ GO_LDFLAGS += -X github.com/kawakattsun/codebuild-go-modules-sample-private/vers
 all: bin/codebuild-go-modules-sample
 
 bin/codebuild-go-modules-sample: *.go
-	go build -trimpath -ldflags '${GO_LDFLAGS}' -o $@ .
+	go build -trimpath -ldflags '$(GO_LDFLAGS)' -o $@ .
